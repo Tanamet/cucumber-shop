@@ -16,6 +16,8 @@ public class ProductCatalog {
     }
 
     public Product getProduct(String name) {
-        return products.get(name);
+        Product p = products.get(name);
+        if (p == null) throw new NotExistProductException();
+        return p;
     }
 }
