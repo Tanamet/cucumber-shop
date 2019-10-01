@@ -11,9 +11,16 @@ Background:
            | Jam    |  80.00  |
 
 
-Scenario: Buy one product
-    When I buy Bread with quantity 2
-    Then total should be 41.00
+Scenario Outline: Buy one product
+    #When I buy Bread with quantity 2
+    #Then total should be 41.00
+    When I buy <product> with quantity <quantity>
+   Then total should be <total>
+   Examples:
+       | product  | quantity |  total  |
+       | Bread    |   1      |   20.50 |
+       | Jam      |   2      |  160.00 |
+
 
 Scenario: Buy multiple products
     When I buy Bread with quantity 2
