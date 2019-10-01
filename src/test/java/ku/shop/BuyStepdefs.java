@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BuyStepdefs {
 
@@ -47,5 +48,12 @@ public class BuyStepdefs {
     public void total_should_be(double total) {
         assertEquals(total, order.getTotal());
     }
+
+    @Then("I (.+) that not exist in shop")
+    public void should_not_can_buy_because(String name) throws NotExistProductException {
+        assertThrows(NotExistProductException.class,
+                () -> catalog.getProduct(name));
+    }
+
 }
 
